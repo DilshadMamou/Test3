@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" accept="image/*" onchange="importFileandPreview()"><br>
+<img src="">
+<p id="srcAttribute" style="width: 200;word-wrap: break-word;"></p>
+
+<script>
+    function importFileandPreview() {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+            document.getElementById("srcAttribute").innerHTML = preview.src;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>
